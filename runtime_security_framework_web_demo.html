@@ -55,7 +55,6 @@
   <header class="border-b border-cyber-border bg-[#0d121f]/90 sticky top-0 z-40 backdrop-blur-md">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
       
-      <!-- Logo & Title -->
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-600 to-indigo-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 ring-1 ring-cyan-400/40">
           <i class="ph ph-shield-check text-2xl text-white"></i>
@@ -279,16 +278,16 @@
                 <div class="flex items-center gap-3">
                   <div class="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-mono text-xs font-bold">2</div>
                   <div>
-                    <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wide">Stage 2: Deterministic Compilation & Simulation</h3>
-                    <p class="text-[11px] text-slate-400">External compiler compiles bytecode & performs pre-flight <code class="text-cyan-400 font-mono">eth_call</code>.</p>
+                    <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wide">Stage 2: Deterministic Compilation & Dry-Run</h3>
+                    <p class="text-[11px] text-slate-400">External compiler compiles bytecode & executes dry-run <code class="text-cyan-400 font-mono">eth_call</code>.</p>
                   </div>
                 </div>
                 <span id="stage2Badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Idle</span>
               </div>
               <div id="stage2Content" class="hidden mt-3 pt-3 border-t border-slate-800/80 text-[11px] font-mono space-y-1">
                 <div class="flex justify-between text-slate-400"><span>Target Fork State:</span> <span class="text-emerald-400">Base Sepolia Block #19,482,104</span></div>
-                <div class="flex justify-between text-slate-400"><span>Calldata SHA256/Keccak Digest:</span> <span id="stage2CalldataHash" class="text-slate-300 font-mono">0x...</span></div>
-                <div class="flex justify-between text-slate-400"><span>Pre-Flight Balance Solvency:</span> <span id="stage2SimStatus" class="text-emerald-400 font-bold">PASS (ΔPortfolio ≥ -MaxLoss)</span></div>
+                <div class="flex justify-between text-slate-400"><span>Canonical SHA-256 Digest:</span> <span id="stage2CalldataHash" class="text-slate-300 font-mono">0x...</span></div>
+                <div class="flex justify-between text-slate-400"><span>Pre-Flight Solvency & Revert Check:</span> <span id="stage2SimStatus" class="text-emerald-400 font-bold">PASS (ΔPortfolio ≥ -MaxLoss)</span></div>
               </div>
             </div>
 
@@ -364,7 +363,7 @@
       <div class="flex border-b border-cyber-border bg-slate-900/70 text-xs font-mono">
         <button id="tabBtnBenchmark" onclick="switchTab('benchmark')" class="py-3 px-5 font-bold border-b-2 border-cyan-400 text-cyan-300 bg-cyber-card/80 flex items-center gap-2">
           <i class="ph ph-chart-bar text-sm"></i>
-          CrAIBench Literature vs. Invariant Baseline
+          Literature Baseline vs. Framework Invariants
         </button>
         <button id="tabBtnPdr" onclick="switchTab('pdr')" class="py-3 px-5 text-slate-400 hover:text-slate-200 border-b-2 border-transparent flex items-center gap-2">
           <i class="ph ph-file-code text-sm"></i>
@@ -395,8 +394,8 @@
               <tr>
                 <th class="py-3 px-4">Attack / Task Vector</th>
                 <th class="py-3 px-4 text-rose-400">Literature Baseline (CrAIBench / Qwen-2.5-14B)</th>
-                <th class="py-3 px-4 text-emerald-400">Base Sepolia Gateway (Prototype Testbed)</th>
-                <th class="py-3 px-4 text-cyan-400">Flowguard Defense Model</th>
+                <th class="py-3 px-4 text-emerald-400">Base Sepolia Gateway (Architectural Model)</th>
+                <th class="py-3 px-4 text-cyan-400">Flowguard Reference Design</th>
                 <th class="py-3 px-4 text-slate-300">Enforcement Layer</th>
               </tr>
             </thead>
@@ -446,8 +445,8 @@
               <tr class="hover:bg-slate-900/40 transition-colors">
                 <td class="py-3 px-4 font-semibold text-slate-200">Benign Task Execution Utility</td>
                 <td class="py-3 px-4 text-slate-300">83.9% default / 87.1% fine-tuned</td>
-                <td class="py-3 px-4 text-emerald-400 font-bold">86.8% Task Completion</td>
-                <td class="py-3 px-4 text-cyan-400 font-bold">86.4% Task Completion</td>
+                <td class="py-3 px-4 text-emerald-400 font-bold">Preserved Routine Utility</td>
+                <td class="py-3 px-4 text-cyan-400 font-bold">86.4% Reference Utility</td>
                 <td class="py-3 px-4 text-slate-400 text-[11px]">Autonomous execution for valid routine ops</td>
               </tr>
             </tbody>
@@ -524,7 +523,7 @@
             <span class="text-slate-400 font-bold" id="ledgerModalNonce">#104 (Flow-Bound)</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-slate-500">Calldata Digest:</span>
+            <span class="text-slate-500">Canonical Digest:</span>
             <span class="text-slate-400 truncate max-w-[170px]" id="ledgerModalCalldata">0x...</span>
           </div>
         </div>
@@ -565,7 +564,7 @@
 
       <div class="bg-slate-950 rounded-xl p-4 border border-cyber-border space-y-2.5 font-mono text-xs">
         <div>
-          <span class="text-slate-500 block text-[10px]">Deterministic Calldata Digest (SHA-256 / Keccak-256):</span>
+          <span class="text-slate-500 block text-[10px]">Deterministic Canonical SHA-256 Digest:</span>
           <span id="receiptTxHash" class="text-cyan-400 break-all text-[11px]">0x...</span>
         </div>
         <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-900">
@@ -612,6 +611,7 @@
     const POLICY_CONFIG = {
       MAX_SPEND_PER_TX_ETH: 0.005,
       MAX_HOURLY_VELOCITY_ETH: 0.020,
+      MAX_HARDWARE_LIMIT_ETH: 0.100, // Hard ceiling for elevated Ledger authorization
       MAX_GAS_PRICE_GWEI: 15.0,
       MAX_PERMITTED_SLIPPAGE: 0.010, // 1.0%
       CHAIN_ID: 84532,
@@ -675,7 +675,6 @@
       }
     };
 
-    // Helper: Safe HTML Escaping to prevent HTML/XSS injection defects
     function escapeHTML(str) {
       if (typeof str !== 'string') return String(str);
       return str.replace(/[&<>'"]/g, tag => ({
@@ -687,24 +686,27 @@
       }[tag] || tag));
     }
 
-    // Cryptographic SHA-256 Digest (Mathematical Commitment instead of pseudo-random strings)
-    async function computeRealCryptoDigest(dataString) {
-      try {
-        const encoder = new TextEncoder();
-        const data = encoder.encode(dataString);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        return '0x' + hashHex;
-      } catch (e) {
-        // Fallback deterministic hash
-        let hash = 0;
-        for (let i = 0; i < dataString.length; i++) {
-          hash = ((hash << 5) - hash) + dataString.charCodeAt(i);
-          hash |= 0;
-        }
-        return '0x' + Math.abs(hash).toString(16).padStart(64, '0');
-      }
+    // Cryptographic SHA-256 Digest over complete canonical intent parameters
+    async function computeCompleteCanonicalDigest(intentObj) {
+      const canonicalString = [
+        intentObj.intentId || "",
+        intentObj.action || "",
+        intentObj.protocol || "",
+        intentObj.chainId || "",
+        intentObj.targetContract || "",
+        intentObj.amountEth || "",
+        intentObj.estReturn || "",
+        intentObj.minReturn || "",
+        intentObj.recipient || "",
+        intentObj.deadline || "",
+        intentObj.nonce || ""
+      ].join(":");
+
+      const encoder = new TextEncoder();
+      const data = encoder.encode(canonicalString);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return '0x' + hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -783,7 +785,6 @@
     async function runPipelineSimulation() {
       if (state.isSimulating) return;
 
-      // Invalidate any older pending elevated state whenever a new run starts
       state.pendingElevatedIntent = null;
 
       if (state.masterKillSwitch) {
@@ -819,7 +820,6 @@
       stage1Badge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800";
       stage1Badge.innerText = "TIS Emitted";
 
-      // DEFECT FIX 2: Explicit action preservation. Increasing amount never silently changes SWAP into REBALANCE.
       const tisData = {
         intentId: `tis-${Date.now().toString(16)}-${Math.random().toString(36).substr(2, 4)}`,
         action: explicitAction,
@@ -830,6 +830,7 @@
         amountEth: isNaN(amountEth) ? 0 : amountEth,
         estReturn: isNaN(estOut) ? 0 : estOut,
         minReturn: isNaN(minOut) ? 0 : minOut,
+        recipient: "0xAgentVaultAddress",
         nonce: ++state.activeNonce,
         deadline: Math.floor(Date.now() / 1000) + 300,
         naturalTrigger: rawPrompt.slice(0, 80)
@@ -839,7 +840,7 @@
       stage1Content.classList.remove('hidden');
       document.getElementById('pdrTisDisplay').innerText = JSON.stringify(tisData, null, 2);
 
-      await sleep(400);
+      await sleep(350);
 
       // STAGE 2: Deterministic Compilation & Cryptographic Digest
       document.getElementById('pipelineStatusBadge').innerText = "Stage 2: eth_call Dry-Run";
@@ -850,13 +851,11 @@
       stage2Badge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800";
       stage2Badge.innerText = "Compiled";
 
-      // DEFECT FIX 4: Real cryptographic commitment over TIS parameters rather than pseudo-random hex
-      const calldataPreimage = `${tisData.intentId}:${tisData.action}:${tisData.targetContract}:${tisData.amountEth}:${tisData.nonce}`;
-      const calldataHash = await computeRealCryptoDigest(calldataPreimage);
+      const calldataHash = await computeCompleteCanonicalDigest(tisData);
       document.getElementById('stage2CalldataHash').innerText = `${calldataHash.slice(0, 10)}...${calldataHash.slice(-8)}`;
       stage2Content.classList.remove('hidden');
 
-      await sleep(400);
+      await sleep(350);
 
       // STAGE 3: Invariant Evaluation
       document.getElementById('pipelineStatusBadge').innerText = "Stage 3: Testing Invariants";
@@ -868,27 +867,23 @@
       stage3Badge.innerText = "Inspecting";
       stage3Content.classList.remove('hidden');
 
-      // Address Format Validation (Regex Check for EVM address)
       const evmAddressRegex = /^0x[a-fA-F0-9]{40}$/;
       const isTargetValidAddress = evmAddressRegex.test(target);
       const isTargetWhitelisted = isTargetValidAddress && Boolean(POLICY_CONFIG.WHITELISTED_TARGETS[target]);
       setInvariantPill('inv-whitelist', isTargetWhitelisted);
 
-      // Invariant 2: Spend Cap (Per-Tx)
       const isPositiveAmount = !isNaN(amountEth) && amountEth > 0;
-      const isSpendWithinLimit = isPositiveAmount && amountEth <= POLICY_CONFIG.MAX_SPEND_PER_TX_ETH;
-      setInvariantPill('inv-spend', isSpendWithinLimit, (!isPositiveAmount || amountEth > POLICY_CONFIG.MAX_SPEND_PER_TX_ETH) ? 'amber' : 'green');
+      const isSpendWithinAutonomousLimit = isPositiveAmount && amountEth <= POLICY_CONFIG.MAX_SPEND_PER_TX_ETH;
+      const isSpendWithinHardwareLimit = isPositiveAmount && amountEth <= POLICY_CONFIG.MAX_HARDWARE_LIMIT_ETH;
+      setInvariantPill('inv-spend', isSpendWithinAutonomousLimit, (!isPositiveAmount || !isSpendWithinHardwareLimit) ? 'red' : (amountEth > POLICY_CONFIG.MAX_SPEND_PER_TX_ETH ? 'amber' : 'green'));
 
-      // Invariant 3: Velocity Limit
       const isVelocityOk = isPositiveAmount && (state.epochSpentEth + amountEth) <= POLICY_CONFIG.MAX_HOURLY_VELOCITY_ETH;
       setInvariantPill('inv-velocity', isVelocityOk, !isVelocityOk ? 'amber' : 'green');
 
-      // DEFECT FIX 1: Negative Gas Check. Gas must be >= 0 and <= MAX_GAS_PRICE_GWEI
       const isGasNonNegative = !isNaN(state.currentGasGwei) && state.currentGasGwei >= 0;
       const isGasOk = isGasNonNegative && state.currentGasGwei <= POLICY_CONFIG.MAX_GAS_PRICE_GWEI;
       setInvariantPill('inv-gas', isGasOk);
 
-      // DEFECT FIX 2: Quote checks are enforced for both SWAP_EXACT_IN and any operation requiring quotes
       let calculatedSlippage = 0;
       let isSlippageOk = false;
       let quoteValid = true;
@@ -907,9 +902,8 @@
       setInvariantPill('inv-slippage', isSlippageOk);
       setInvariantPill('inv-integrity', true);
 
-      await sleep(500);
+      await sleep(400);
 
-      // Re-check kill switch after asynchronous delays
       if (state.masterKillSwitch) {
         handleHaltInterruption(runBtn);
         return;
@@ -925,7 +919,7 @@
       let finalOutcome = "APPROVED";
       let failureReason = "";
 
-      // Hard Blocks
+      // Evaluation Rules
       if (!isPositiveAmount) {
         finalOutcome = "BLOCKED";
         failureReason = `INVALID AMOUNT: Transfer value must be positive and non-zero (received: ${amountEth}).`;
@@ -936,7 +930,6 @@
         finalOutcome = "BLOCKED";
         failureReason = `SECURITY FAULT: Target is not in Base Sepolia approved protocol whitelist.`;
       } else if (!isGasNonNegative) {
-        // DEFECT FIX 1: Reject negative gas
         finalOutcome = "BLOCKED";
         failureReason = `INVALID GAS: Negative gas price (${state.currentGasGwei} Gwei) is physically impossible.`;
       } else if (!isGasOk) {
@@ -948,12 +941,15 @@
       } else if (!isSlippageOk) {
         finalOutcome = "BLOCKED";
         failureReason = `EXCESSIVE SLIPPAGE: Calculated slippage ${(calculatedSlippage * 100).toFixed(2)}% exceeds 1.0% circuit breaker tolerance.`;
-      } else if (!isSpendWithinLimit || !isVelocityOk) {
+      } else if (!isSpendWithinHardwareLimit) {
+        // ENFORCE HARD CEILING: > 0.10 ETH is dropped unconditionally
+        finalOutcome = "BLOCKED";
+        failureReason = `ABSOLUTE CEILING BREACH: Amount ${amountEth} ETH exceeds hard hardware authorization ceiling (${POLICY_CONFIG.MAX_HARDWARE_LIMIT_ETH} ETH).`;
+      } else if (!isSpendWithinAutonomousLimit || !isVelocityOk) {
         finalOutcome = "ELEVATED";
         failureReason = `OUT-OF-BOUND SPEND: Transfer of ${amountEth} ETH breaches autonomous limits (Max: ${POLICY_CONFIG.MAX_SPEND_PER_TX_ETH} ETH). Requires Flowguard hardware authorization.`;
       }
 
-      // Compile Simulated PDR
       const pdrData = {
         pdrId: `pdr-${Date.now()}`,
         status: finalOutcome,
@@ -965,15 +961,15 @@
           targetWhitelisted: isTargetWhitelisted,
           gasCeilingSatisfied: isGasOk,
           slippageSatisfied: isSlippageOk,
-          spendCapSatisfied: isSpendWithinLimit,
-          velocityCapSatisfied: isVelocityOk
+          spendCapSatisfied: isSpendWithinAutonomousLimit,
+          velocityCapSatisfied: isVelocityOk,
+          hardwareLimitSatisfied: isSpendWithinHardwareLimit
         },
         failureReason: failureReason || null,
         simulatedScheme: finalOutcome === "APPROVED" ? "DYNAMIC_SERVER_MPC" : (finalOutcome === "ELEVATED" ? "FLOW_BOUND_EIP712_LEDGER" : "DISCARDED")
       };
       document.getElementById('pdrAttestationDisplay').innerText = JSON.stringify(pdrData, null, 2);
 
-      // DEFECT FIX 3: Safe text escaping prevents HTML injection (XSS)
       const safeReason = escapeHTML(failureReason);
 
       if (finalOutcome === "APPROVED") {
@@ -1015,7 +1011,7 @@
             <i class="ph ph-warning text-lg text-amber-400"></i>
             <div>
               <span class="font-bold">OUTCOME 2: ELEVATED [Flowguard CircuitBreaker]</span>
-              <p class="text-[10px] text-slate-300">Exceeds spend cap • Requires EIP-712 Ledger Hardware Clear Signing</p>
+              <p class="text-[10px] text-slate-300">Exceeds autonomous cap • Requires EIP-712 Ledger Hardware Clear Signing</p>
             </div>
           </div>
           <button id="openLedgerBtn" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-[11px] transition-colors cursor-pointer animate-bounce">
@@ -1125,6 +1121,7 @@
       document.getElementById('ledgerModal').classList.add('hidden');
     }
 
+    // LIVE POLICY RE-CHECK AT CONFIRMATION
     function confirmLedgerSignature() {
       closeLedgerModal();
 
@@ -1139,7 +1136,25 @@
         return;
       }
 
+      // Re-read and re-evaluate live conditions at the moment of signing
+      const currentLiveGas = parseFloat(document.getElementById('gasInput').value) || state.currentGasGwei;
+      if (currentLiveGas > POLICY_CONFIG.MAX_GAS_PRICE_GWEI || currentLiveGas < 0) {
+        showToast(`CONFIRMATION ABORTED: Live network gas (${currentLiveGas.toFixed(2)} Gwei) exceeds the 15.0 Gwei policy ceiling.`, "danger");
+        addAuditLog("POLICY_SPIKE", `Hardware confirmation aborted: Network gas surged to ${currentLiveGas.toFixed(2)} Gwei during human review.`, "BLOCKED");
+        state.pendingElevatedIntent = null;
+        return;
+      }
+
       const { target, amountEth, calldataHash } = state.pendingElevatedIntent;
+
+      // Final check against absolute hardware limit
+      if (amountEth > POLICY_CONFIG.MAX_HARDWARE_LIMIT_ETH) {
+        showToast(`CONFIRMATION REFUSED: Amount (${amountEth} ETH) exceeds hardware limit (${POLICY_CONFIG.MAX_HARDWARE_LIMIT_ETH} ETH).`, "danger");
+        addAuditLog("CEILING_VIOLATION", "Refused confirmation: Exceeds hard hardware authorization ceiling.", "BLOCKED");
+        state.pendingElevatedIntent = null;
+        return;
+      }
+
       state.epochSpentEth += amountEth;
       updateTelemetryUI();
 
@@ -1188,7 +1203,7 @@
 
     function seedAuditLogs() {
       addAuditLog("INIT", "Runtime Security Gateway initialized in simulated Base Sepolia environment.", "INFO");
-      addAuditLog("POLICY", "Deterministic spend cap: 0.005 ETH, Hourly Velocity: 0.02 ETH configured.", "INFO");
+      addAuditLog("POLICY", "Deterministic spend cap: 0.005 ETH, Hourly Velocity: 0.02 ETH, Hardware Cap: 0.10 ETH configured.", "INFO");
     }
 
     function addAuditLog(type, message, status) {
@@ -1215,7 +1230,7 @@
 
       const msgSpan = document.createElement('span');
       msgSpan.className = "text-slate-300 truncate";
-      msgSpan.textContent = message; // Safe textContent prevents XSS
+      msgSpan.textContent = message;
 
       leftCol.appendChild(timeSpan);
       leftCol.appendChild(typeSpan);
@@ -1275,7 +1290,7 @@
       iconEl.className = `ph ${icon} text-lg shrink-0`;
       const textEl = document.createElement('span');
       textEl.className = "flex-1";
-      textEl.textContent = message; // Safe textContent prevents XSS
+      textEl.textContent = message;
 
       toast.appendChild(iconEl);
       toast.appendChild(textEl);
