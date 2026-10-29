@@ -65,7 +65,7 @@
               Agent Runtime Security Framework
             </h1>
             <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800">
-              Interactive Testbed
+              Policy Simulation
             </span>
           </div>
           <p class="text-xs text-slate-400">
@@ -110,7 +110,7 @@
   </header>
 
   <!-- ================= MAIN CONTAINER ================= -->
-  <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+  <main class="max-w-7xl mx-auto px-4 py-6 space-y-6"><p role="note" style="padding:12px;border:1px solid #38bdf8">Educational simulation. No live LLM, RPC, EVM simulation, wallet, hardware signing, or broadcast. Budgets and audit history are local to this page and reset on reload.</p>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
@@ -123,7 +123,7 @@
               <h2 class="text-base font-bold text-white tracking-wide">Attack & Scenario Studio</h2>
             </div>
             <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-800 text-slate-300 rounded border border-slate-700">
-              Interactive Testbed
+              Policy Simulation
             </span>
           </div>
 
@@ -185,7 +185,7 @@
                   <span class="text-xs font-semibold text-amber-300">D. Treasury Rebalance (Out-of-Bound)</span>
                   <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-amber-900/40 text-amber-300 border border-amber-800">ELEVATE</span>
                 </div>
-                <p class="text-[11px] text-slate-400 truncate mt-0.5">0.040 ETH transfer exceeds 0.005 ETH cap. Requires Ledger Clear Sign.</p>
+                <p class="text-[11px] text-slate-400 truncate mt-0.5">0.040 ETH transfer exceeds 0.005 ETH cap. Requires simulated human review.</p>
               </div>
             </button>
           </div>
@@ -262,7 +262,7 @@
                   <div class="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-mono text-xs font-bold">1</div>
                   <div>
                     <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wide">Stage 1: Cognitive Planning Domain</h3>
-                    <p class="text-[11px] text-slate-400">Strict cognitive air-gap: Generates declarative TIS JSON (No calldata creation).</p>
+                    <p class="text-[11px] text-slate-400">Builds an intent from form fields; no model or isolated process.</p>
                   </div>
                 </div>
                 <span id="stage1Badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Idle</span>
@@ -278,16 +278,16 @@
                 <div class="flex items-center gap-3">
                   <div class="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-mono text-xs font-bold">2</div>
                   <div>
-                    <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wide">Stage 2: Deterministic Compilation & Dry-Run</h3>
-                    <p class="text-[11px] text-slate-400">External compiler compiles bytecode & executes dry-run <code class="text-cyan-400 font-mono">eth_call</code>.</p>
+                    <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wide">Stage 2: Intent Digest (Simulation)</h3>
+                    <p class="text-[11px] text-slate-400">Hashes a versioned intent object; no calldata or RPC call is made.</p>
                   </div>
                 </div>
                 <span id="stage2Badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Idle</span>
               </div>
               <div id="stage2Content" class="hidden mt-3 pt-3 border-t border-slate-800/80 text-[11px] font-mono space-y-1">
-                <div class="flex justify-between text-slate-400"><span>Target Fork State:</span> <span class="text-emerald-400">Base Sepolia Block #19,482,104</span></div>
+                <div class="flex justify-between text-slate-400"><span>Illustrative network:</span> <span class="text-emerald-400">Base Sepolia (not connected)</span></div>
                 <div class="flex justify-between text-slate-400"><span>Canonical SHA-256 Digest:</span> <span id="stage2CalldataHash" class="text-slate-300 font-mono">0x...</span></div>
-                <div class="flex justify-between text-slate-400"><span>Pre-Flight Solvency & Revert Check:</span> <span id="stage2SimStatus" class="text-emerald-400 font-bold">PASS (ΔPortfolio ≥ -MaxLoss)</span></div>
+                <div class="flex justify-between text-slate-400"><span>EVM simulation:</span> <span id="stage2SimStatus" class="text-emerald-400 font-bold">Not implemented</span></div>
               </div>
             </div>
 
@@ -334,7 +334,7 @@
                   <div class="w-7 h-7 rounded-lg bg-slate-800 text-slate-400 flex items-center justify-center font-mono text-xs font-bold">4</div>
                   <div>
                     <h3 class="text-xs font-bold text-slate-200 uppercase tracking-wide">Stage 4: Signing & Cryptographic Execution Domain</h3>
-                    <p class="text-[11px] text-slate-400">Tri-State Gateway: Dynamic MPC, Ledger Clear-Signing, or Immediate Rejection.</p>
+                    <p class="text-[11px] text-slate-400">Local outcomes: approve, request simulated review, or block.</p>
                   </div>
                 </div>
                 <span id="stage4Badge" class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-slate-400">Idle</span>
@@ -388,69 +388,11 @@
           </div>
         </div>
 
-        <div class="overflow-x-auto rounded-xl border border-cyber-border">
-          <table class="w-full text-left text-xs font-mono">
-            <thead class="bg-slate-900/90 text-slate-400 border-b border-cyber-border text-[11px] uppercase tracking-wider">
-              <tr>
-                <th class="py-3 px-4">Attack / Task Vector</th>
-                <th class="py-3 px-4 text-rose-400">Literature Baseline (CrAIBench / Qwen-2.5-14B)</th>
-                <th class="py-3 px-4 text-emerald-400">Base Sepolia Gateway (Architectural Model)</th>
-                <th class="py-3 px-4 text-cyan-400">Flowguard Reference Design</th>
-                <th class="py-3 px-4 text-slate-300">Enforcement Layer</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-cyber-border/60 bg-slate-950/40">
-              <tr class="hover:bg-slate-900/40 transition-colors">
-                <td class="py-3 px-4 font-semibold text-slate-200">Direct Prompt Injection</td>
-                <td class="py-3 px-4 text-rose-400">Vulnerable to Context Hijack (45.2% unhardened ASR)</td>
-                <td class="py-3 px-4 text-emerald-400 font-bold">0.0% Execution (Air-Gapped)</td>
-                <td class="py-3 px-4 text-cyan-400 font-bold">Blocked at Compiler</td>
-                <td class="py-3 px-4 text-slate-400 text-[11px]">LLM cannot generate raw calldata</td>
-              </tr>
-              <tr class="hover:bg-slate-900/40 transition-colors">
-                <td class="py-3 px-4 font-semibold text-slate-200">Indirect Memory Injection (CM-MI)</td>
-                <td class="py-3 px-4 text-rose-400">85.1% ASR (Default model across 121 MI vectors)</td>
-                <td class="py-3 px-4 text-emerald-400 font-bold">0.0% Execution (Blocked)</td>
-                <td class="py-3 px-4 text-cyan-400 font-bold">Blocked at Registry</td>
-                <td class="py-3 px-4 text-slate-400 text-[11px]">Policy engine ignores conversational DB</td>
-              </tr>
-              <tr class="hover:bg-slate-900/40 transition-colors">
-                <td class="py-3 px-4 font-semibold text-slate-200">Target Address Poisoning</td>
-                <td class="py-3 px-4 text-rose-400">High Risk (92.4% baseline adoption)</td>
-                <td class="py-3 px-4 text-emerald-400 font-bold">0.0% (Whitelist Reject)</td>
-                <td class="py-3 px-4 text-cyan-400 font-bold">0.0% (Whitelist Reject)</td>
-                <td class="py-3 px-4 text-slate-400 text-[11px]">Strict Base Sepolia contract registry</td>
-              </tr>
-              <tr class="hover:bg-slate-900/40 transition-colors">
-                <td class="py-3 px-4 font-semibold text-slate-200">MEV Slippage / Sandwiching</td>
-                <td class="py-3 px-4 text-rose-400">Unconstrained Slippage ($14.20 simulated loss/trade)</td>
-                <td class="py-3 px-4 text-emerald-400 font-bold">Pre-Flight Abort (&gt; 1.0%)</td>
-                <td class="py-3 px-4 text-cyan-400 font-bold">Composer Bound</td>
-                <td class="py-3 px-4 text-slate-400 text-[11px]">Pre-flight simulation balance invariant</td>
-              </tr>
-              <tr class="hover:bg-slate-900/40 transition-colors">
-                <td class="py-3 px-4 font-semibold text-slate-200">Unlimited Token Approvals</td>
-                <td class="py-3 px-4 text-rose-400">High Risk (type(uint256).max granted)</td>
-                <td class="py-3 px-4 text-emerald-400 font-bold">0.0% Execution (Hard Block)</td>
-                <td class="py-3 px-4 text-cyan-400 font-bold">0.0% Execution (Hard Block)</td>
-                <td class="py-3 px-4 text-slate-400 text-[11px]">Explicit per-trade allowance bounding</td>
-              </tr>
-              <tr class="hover:bg-slate-900/40 transition-colors">
-                <td class="py-3 px-4 font-semibold text-slate-200">Out-of-Bound Treasury Spend</td>
-                <td class="py-3 px-4 text-rose-400">Unbounded Balance Drainage</td>
-                <td class="py-3 px-4 text-emerald-400 font-bold">0.0% Autonomous (Velocity Halt)</td>
-                <td class="py-3 px-4 text-amber-400 font-bold">Escalated to Ledger (EIP-712)</td>
-                <td class="py-3 px-4 text-slate-400 text-[11px]">EIP-712 + ERC-7730 Clear Signing</td>
-              </tr>
-              <tr class="hover:bg-slate-900/40 transition-colors">
-                <td class="py-3 px-4 font-semibold text-slate-200">Benign Task Execution Utility</td>
-                <td class="py-3 px-4 text-slate-300">83.9% default / 87.1% fine-tuned</td>
-                <td class="py-3 px-4 text-emerald-400 font-bold">Preserved Routine Utility</td>
-                <td class="py-3 px-4 text-cyan-400 font-bold">86.4% Reference Utility</td>
-                <td class="py-3 px-4 text-slate-400 text-[11px]">Autonomous execution for valid routine ops</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="p-4 rounded-xl border border-cyber-border text-sm space-y-3">
+          <p><strong>Verified scope:</strong> this page demonstrates local policy decisions and simulated human approval. It does not call an LLM, compile EVM calldata, simulate a blockchain, sign, or broadcast.</p>
+          <p>Patlan et al., section 6.3/Figure 10: Qwen-2.5-14B-Instruct had 85.1% default memory-injection ASR. Its fine-tuned defense achieved 1.7% ASR and 87.1% benign utility on 31 single-step tasks / 121 attacks. These are literature results, not this project's measurements.</p>
+          <p>Alqithami, section 8: TIS/PDR are proposed interfaces separating planner, verifier, and signer. A real deployment would require independently verified authorization and execution binding.</p>
+          <p>No project-wide ASR, utility, profitability, or Flowguard benchmark is claimed. See the accompanying regression-results.json for local checks.</p>
         </div>
       </div>
 
@@ -458,7 +400,7 @@
       <div id="tabContentPdr" class="p-5 hidden">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <span class="text-xs font-mono font-bold text-cyan-300 block mb-2">Canonical Transaction Intent Schema (TIS)</span>
+            <span class="text-xs font-mono font-bold text-cyan-300 block mb-2">Simulation Intent (TIS-inspired)</span>
             <pre id="pdrTisDisplay" class="p-3 bg-slate-950 border border-cyber-border rounded-xl text-[11px] font-mono text-cyan-400 h-64 overflow-y-auto"></pre>
           </div>
           <div>
@@ -490,14 +432,14 @@
         <div class="inline-flex p-3 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 mb-2">
           <i class="ph ph-shield-star text-2xl"></i>
         </div>
-        <h3 class="text-base font-bold text-white">Flowguard Human Escalation Required</h3>
-        <p class="text-xs text-amber-300/80 mt-1">Transaction value exceeds autonomous budget. ERC-7730 Clear Signing triggered.</p>
+        <h3 class="text-base font-bold text-white">Simulated Human Review Required</h3>
+        <p class="text-xs text-amber-300/80 mt-1">Local amount or budget requires a simulated operator decision.</p>
       </div>
 
       <!-- Simulated Ledger Nano Screen -->
       <div class="bg-black border-2 border-slate-700 rounded-xl p-4 font-mono text-xs text-slate-100 shadow-inner space-y-2.5">
         <div class="flex items-center justify-between pb-2 border-b border-slate-800 text-[10px] text-amber-400 uppercase tracking-widest font-bold">
-          <span>ERC-7730 Mode: VERIFIED</span>
+          <span>SIMULATION: NO HARDWARE CONNECTED</span>
           <i class="ph ph-lock-key"></i>
         </div>
 
@@ -529,14 +471,14 @@
         </div>
 
         <div class="pt-2 border-t border-slate-800 text-center text-[10px] text-slate-400">
-          WYSIWYS: Single-execution immutable signature (Simulated)
+          Simulation only: no signature is requested (Simulated)
         </div>
       </div>
 
       <div class="mt-5 space-y-2">
         <button id="ledgerConfirmBtn" onclick="confirmLedgerSignature()" class="w-full py-3 px-4 rounded-xl font-bold text-xs bg-amber-500 hover:bg-amber-400 text-slate-950 flex items-center justify-center gap-2 transition-all cursor-pointer">
           <i class="ph ph-fingerprint text-base"></i>
-          <span>Hold to Confirm (Hardware Clear Sign)</span>
+          <span>Confirm Simulated Approval</span>
         </button>
         <button onclick="rejectLedgerSignature()" class="w-full py-2.5 px-4 rounded-xl font-semibold text-xs border border-slate-700 hover:bg-slate-800 text-slate-300 transition-all cursor-pointer">
           Reject & Cancel Transaction
@@ -558,7 +500,7 @@
         </div>
         <div>
           <h3 class="text-base font-bold text-white">Simulated Base Sepolia Receipt</h3>
-          <p class="text-xs text-slate-400 font-mono">Status: Successfully Simulated on Block #19,482,109</p>
+          <p class="text-xs text-slate-400 font-mono">Status: Successfully Simulated on Block Not mined</p>
         </div>
       </div>
 
@@ -570,7 +512,7 @@
         <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-900">
           <div>
             <span class="text-slate-500 block text-[10px]">Block Height:</span>
-            <span class="text-slate-200">#19,482,109</span>
+            <span class="text-slate-200">Not mined</span>
           </div>
           <div>
             <span class="text-slate-500 block text-[10px]">Chain ID:</span>
@@ -578,7 +520,7 @@
           </div>
           <div>
             <span class="text-slate-500 block text-[10px]">Gas Used:</span>
-            <span class="text-slate-200">142,380 units</span>
+            <span class="text-slate-200">Not measured</span>
           </div>
           <div>
             <span class="text-slate-500 block text-[10px]">Effective Gas Price:</span>
@@ -596,7 +538,7 @@
           Dismiss
         </button>
         <button onclick="openBaseScan()" class="flex-1 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs transition-colors flex items-center justify-center gap-1.5">
-          <span>Search BaseScan</span>
+          <span>About This Simulation Record</span>
           <i class="ph ph-arrow-square-out"></i>
         </button>
       </div>
@@ -629,7 +571,9 @@
       activeNonce: 104,
       isSimulating: false,
       pendingElevatedIntent: null,
-      historyLogs: []
+      historyLogs: [],
+      spendEvents: [{time: Date.now(), amount: 0.002}],
+      consumedNonces: new Set()
     };
 
     const SCENARIOS = {
@@ -686,27 +630,42 @@
       }[tag] || tag));
     }
 
-    // Cryptographic SHA-256 Digest over complete canonical intent parameters
+    function canonicalJSON(value) {
+      if (Array.isArray(value)) return '[' + value.map(canonicalJSON).join(',') + ']';
+      if (value && typeof value === 'object') return '{' + Object.keys(value).sort().map(k => JSON.stringify(k) + ':' + canonicalJSON(value[k])).join(',') + '}';
+      if (typeof value === 'number' && !Number.isFinite(value)) throw new Error('Non-finite intent field');
+      return JSON.stringify(value);
+    }
     async function computeCompleteCanonicalDigest(intentObj) {
-      const canonicalString = [
-        intentObj.intentId || "",
-        intentObj.action || "",
-        intentObj.protocol || "",
-        intentObj.chainId || "",
-        intentObj.targetContract || "",
-        intentObj.amountEth || "",
-        intentObj.estReturn || "",
-        intentObj.minReturn || "",
-        intentObj.recipient || "",
-        intentObj.deadline || "",
-        intentObj.nonce || ""
-      ].join(":");
-
-      const encoder = new TextEncoder();
-      const data = encoder.encode(canonicalString);
-      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
-      const hashArray = Array.from(new Uint8Array(hashBuffer));
-      return '0x' + hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      const data = new TextEncoder().encode(canonicalJSON(intentObj));
+      const result = await crypto.subtle.digest('SHA-256', data);
+      return '0x' + Array.from(new Uint8Array(result), b => b.toString(16).padStart(2, '0')).join('');
+    }
+    function readNumeric(id) {
+      const raw = document.getElementById(id).value.trim();
+      return raw === '' ? NaN : Number(raw);
+    }
+    function refreshBudget() {
+      state.spendEvents = state.spendEvents.filter(e => e.time > Date.now() - 3600000);
+      state.epochSpentEth = state.spendEvents.reduce((n,e) => n + Math.round(e.amount * 1e9), 0) / 1e9;
+    }
+    function recordSpend(amount) {
+      state.spendEvents.push({time: Date.now(), amount});
+      refreshBudget();
+    }
+    function evaluateIntent(intent, gas) {
+      refreshBudget();
+      if (state.masterKillSwitch) return {status:'BLOCKED', reason:'Emergency halt is active.'};
+      if (!Number.isFinite(gas) || gas < 0 || gas > POLICY_CONFIG.MAX_GAS_PRICE_GWEI) return {status:'BLOCKED', reason:'Gas must be known, finite, and between 0 and 15 Gwei.'};
+      if (!Number.isFinite(intent.amountEth) || intent.amountEth <= 0 || intent.amountEth > POLICY_CONFIG.MAX_HARDWARE_LIMIT_ETH) return {status:'BLOCKED', reason:'Amount must be positive, finite, and no greater than 0.10 ETH.'};
+      if (Math.abs(intent.amountEth * 1e9 - Math.round(intent.amountEth * 1e9)) > 1e-6) return {status:'BLOCKED', reason:'Simulation supports at most nine decimal places of ETH.'};
+      if (!['SWAP_EXACT_IN','TREASURY_REBALANCE'].includes(intent.action)) return {status:'BLOCKED', reason:'Unsupported simulation action.'};
+      if (intent.targetContract.toLowerCase() !== '0x94cc0aac535ccdb3c01d6787d6413c739ae12bc4') return {status:'BLOCKED', reason:'Target is not the configured simulation router.'};
+      if (!Number.isFinite(intent.estReturn) || !Number.isFinite(intent.minReturn) || intent.estReturn <= 0 || intent.minReturn <= 0 || intent.minReturn > intent.estReturn) return {status:'BLOCKED', reason:'A positive valid quote and minimum output are required.'};
+      if ((intent.estReturn-intent.minReturn)/intent.estReturn > POLICY_CONFIG.MAX_PERMITTED_SLIPPAGE + 1e-12) return {status:'BLOCKED', reason:'Slippage tolerance exceeds 1%.'};
+      if (!Number.isInteger(intent.nonce) || state.consumedNonces.has(intent.nonce) || !Number.isFinite(intent.deadline) || intent.deadline <= Date.now()/1000) return {status:'BLOCKED', reason:'Intent is expired or nonce is invalid/consumed.'};
+      if (intent.schemaVersion !== 1 || intent.policyVersion !== 'simulation-v1' || intent.chainId !== POLICY_CONFIG.CHAIN_ID) return {status:'BLOCKED', reason:'Intent domain or policy version mismatch.'};
+      return {status: intent.amountEth > POLICY_CONFIG.MAX_SPEND_PER_TX_ETH || state.epochSpentEth + intent.amountEth > POLICY_CONFIG.MAX_HOURLY_VELOCITY_ETH + 1e-12 ? 'ELEVATED' : 'APPROVED', reason:null};
     }
 
     window.addEventListener('DOMContentLoaded', () => {
@@ -721,7 +680,7 @@
     }
 
     function updateGasFromInput() {
-      const gasVal = parseFloat(document.getElementById('gasInput').value);
+      const gasVal = readNumeric('gasInput');
       if (!isNaN(gasVal)) {
         state.currentGasGwei = gasVal;
         updateTelemetryUI();
@@ -798,15 +757,16 @@
       runBtn.disabled = true;
       runBtn.innerHTML = `<i class="ph ph-spinner animate-spin text-base"></i><span>Evaluating Deterministic Firewall...</span>`;
 
+      try {
       resetPipeline();
 
       const rawPrompt = document.getElementById('promptInput').value;
       const explicitAction = document.getElementById('actionTypeSelect').value;
       const target = document.getElementById('targetInput').value.trim();
-      const amountEth = parseFloat(document.getElementById('amountInput').value);
-      const estOut = parseFloat(document.getElementById('estOutInput').value);
-      const minOut = parseFloat(document.getElementById('minOutInput').value);
-      state.currentGasGwei = parseFloat(document.getElementById('gasInput').value);
+      const amountEth = readNumeric('amountInput');
+      const estOut = readNumeric('estOutInput');
+      const minOut = readNumeric('minOutInput');
+      state.currentGasGwei = readNumeric('gasInput');
       updateTelemetryUI();
 
       // STAGE 1: Cognitive Planning
@@ -821,16 +781,18 @@
       stage1Badge.innerText = "TIS Emitted";
 
       const tisData = {
+        schemaVersion: 1,
+        policyVersion: 'simulation-v1',
         intentId: `tis-${Date.now().toString(16)}-${Math.random().toString(36).substr(2, 4)}`,
         action: explicitAction,
         protocol: "UNISWAP_V3",
         chainId: POLICY_CONFIG.CHAIN_ID,
         proposer: "AgentPlanner_ReAct",
         targetContract: target,
-        amountEth: isNaN(amountEth) ? 0 : amountEth,
-        estReturn: isNaN(estOut) ? 0 : estOut,
-        minReturn: isNaN(minOut) ? 0 : minOut,
-        recipient: "0xAgentVaultAddress",
+        amountEth: amountEth,
+        estReturn: estOut,
+        minReturn: minOut,
+        recipient: "0x1111111111111111111111111111111111111111",
         nonce: ++state.activeNonce,
         deadline: Math.floor(Date.now() / 1000) + 300,
         naturalTrigger: rawPrompt.slice(0, 80)
@@ -843,14 +805,21 @@
       await sleep(350);
 
       // STAGE 2: Deterministic Compilation & Cryptographic Digest
-      document.getElementById('pipelineStatusBadge').innerText = "Stage 2: eth_call Dry-Run";
+      document.getElementById('pipelineStatusBadge').innerText = "Stage 2: Hashing Simulation Intent";
       const stage2Card = document.getElementById('stage2Card');
       const stage2Badge = document.getElementById('stage2Badge');
       const stage2Content = document.getElementById('stage2Content');
       stage2Card.className = "p-3.5 rounded-xl border border-indigo-500/50 bg-slate-900/90 transition-all";
       stage2Badge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-950 text-indigo-300 border border-indigo-800";
-      stage2Badge.innerText = "Compiled";
+      stage2Badge.innerText = "Intent Hashed";
 
+      const initialCheck = evaluateIntent(tisData, readNumeric('gasInput'));
+      if (initialCheck.status === 'BLOCKED') {
+        document.getElementById('pdrAttestationDisplay').textContent = JSON.stringify({status:'BLOCKED',reason:initialCheck.reason,simulation:true},null,2);
+        document.getElementById('outcomeBanner').textContent = 'BLOCKED: ' + initialCheck.reason;
+        document.getElementById('stage4Content').classList.remove('hidden');
+        return;
+      }
       const calldataHash = await computeCompleteCanonicalDigest(tisData);
       document.getElementById('stage2CalldataHash').innerText = `${calldataHash.slice(0, 10)}...${calldataHash.slice(-8)}`;
       stage2Content.classList.remove('hidden');
@@ -872,7 +841,7 @@
       const isTargetWhitelisted = isTargetValidAddress && Boolean(POLICY_CONFIG.WHITELISTED_TARGETS[target]);
       setInvariantPill('inv-whitelist', isTargetWhitelisted);
 
-      const isPositiveAmount = !isNaN(amountEth) && amountEth > 0;
+      const isPositiveAmount = Number.isFinite(amountEth) && amountEth > 0;
       const isSpendWithinAutonomousLimit = isPositiveAmount && amountEth <= POLICY_CONFIG.MAX_SPEND_PER_TX_ETH;
       const isSpendWithinHardwareLimit = isPositiveAmount && amountEth <= POLICY_CONFIG.MAX_HARDWARE_LIMIT_ETH;
       setInvariantPill('inv-spend', isSpendWithinAutonomousLimit, (!isPositiveAmount || !isSpendWithinHardwareLimit) ? 'red' : (amountEth > POLICY_CONFIG.MAX_SPEND_PER_TX_ETH ? 'amber' : 'green'));
@@ -900,7 +869,7 @@
         isSlippageOk = true;
       }
       setInvariantPill('inv-slippage', isSlippageOk);
-      setInvariantPill('inv-integrity', true);
+      setInvariantPill('inv-integrity', tisData.deadline > Date.now()/1000 && !state.consumedNonces.has(tisData.nonce));
 
       await sleep(400);
 
@@ -947,9 +916,12 @@
         failureReason = `ABSOLUTE CEILING BREACH: Amount ${amountEth} ETH exceeds hard hardware authorization ceiling (${POLICY_CONFIG.MAX_HARDWARE_LIMIT_ETH} ETH).`;
       } else if (!isSpendWithinAutonomousLimit || !isVelocityOk) {
         finalOutcome = "ELEVATED";
-        failureReason = `OUT-OF-BOUND SPEND: Transfer of ${amountEth} ETH breaches autonomous limits (Max: ${POLICY_CONFIG.MAX_SPEND_PER_TX_ETH} ETH). Requires Flowguard hardware authorization.`;
+        failureReason = `OUT-OF-BOUND SPEND: Transfer of ${amountEth} ETH breaches autonomous limits (Max: ${POLICY_CONFIG.MAX_SPEND_PER_TX_ETH} ETH). Requires simulated human approval.`;
       }
 
+      const liveDecision = evaluateIntent(tisData, readNumeric('gasInput'));
+      finalOutcome = liveDecision.status;
+      failureReason = liveDecision.reason || (finalOutcome === 'ELEVATED' ? 'Simulated human review required.' : '');
       const pdrData = {
         pdrId: `pdr-${Date.now()}`,
         status: finalOutcome,
@@ -983,15 +955,16 @@
             <i class="ph ph-check-circle text-lg text-emerald-400"></i>
             <div>
               <span class="font-bold">OUTCOME 1: APPROVED [Autonomous Server Wallet]</span>
-              <p class="text-[10px] text-slate-300">Passed all invariants • Signed via Dynamic MPC Server Key (Simulated)</p>
+              <p class="text-[10px] text-slate-300">Passed all invariants • Local policy approved (simulation only)</p>
             </div>
           </div>
           <button onclick="openExplorerModal('${calldataHash}', '${escapeHTML(target)}', ${amountEth})" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] transition-colors cursor-pointer">
-            View Receipt
+            View Simulation Record
           </button>
         `;
 
-        state.epochSpentEth += amountEth;
+        state.consumedNonces.add(tisData.nonce);
+        recordSpend(amountEth);
         updateTelemetryUI();
 
         document.getElementById('pipelineStatusBadge').className = "px-2.5 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold";
@@ -1003,7 +976,7 @@
       } else if (finalOutcome === "ELEVATED") {
         stage4Card.className = "p-3.5 rounded-xl border border-amber-500/50 bg-slate-900/90 glow-amber transition-all";
         stage4Badge.className = "text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800";
-        stage4Badge.innerText = "Elevated (Ledger Hold)";
+        stage4Badge.innerText = "Elevated (Simulated Review)";
 
         outcomeBanner.className = "p-3 rounded-xl border border-amber-500/50 bg-amber-950/40 text-amber-300 text-xs font-mono flex items-center justify-between";
         outcomeBanner.innerHTML = `
@@ -1011,11 +984,11 @@
             <i class="ph ph-warning text-lg text-amber-400"></i>
             <div>
               <span class="font-bold">OUTCOME 2: ELEVATED [Flowguard CircuitBreaker]</span>
-              <p class="text-[10px] text-slate-300">Exceeds autonomous cap • Requires EIP-712 Ledger Hardware Clear Signing</p>
+              <p class="text-[10px] text-slate-300">Exceeds autonomous cap • Requires simulated human review</p>
             </div>
           </div>
           <button id="openLedgerBtn" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-[11px] transition-colors cursor-pointer animate-bounce">
-            Open Ledger
+            Review Simulation
           </button>
         `;
 
@@ -1024,12 +997,12 @@
         };
 
         document.getElementById('pipelineStatusBadge').className = "px-2.5 py-0.5 rounded-full bg-amber-950 text-amber-300 border border-amber-800 font-bold";
-        document.getElementById('pipelineStatusBadge').innerText = "Awaiting Ledger Clear Sign";
+        document.getElementById('pipelineStatusBadge').innerText = "Awaiting Simulated Human Review";
 
-        showToast("ELEVATION REQUIRED: Flowguard triggered hardware verification.", "warning");
+        showToast("ELEVATION REQUIRED: Local policy requires simulated human review.", "warning");
         addAuditLog("ELEVATION", failureReason, "ELEVATED");
 
-        state.pendingElevatedIntent = { target, amountEth, estOut, minOut, calldataHash };
+        state.pendingElevatedIntent = Object.freeze({ target, amountEth, estOut, minOut, calldataHash, intent: Object.freeze({...tisData}) });
 
       } else {
         stage4Card.className = "p-3.5 rounded-xl border border-red-500/50 bg-slate-900/90 glow-crimson transition-all";
@@ -1057,7 +1030,16 @@
 
       runBtn.disabled = false;
       runBtn.innerHTML = `<i class="ph ph-play-fill text-base"></i><span>Dispatch Agent Tool Call</span>`;
-      state.isSimulating = false;
+      state.isSimulating = false;      } catch (error) {
+        state.pendingElevatedIntent = null;
+        document.getElementById('pdrAttestationDisplay').textContent = JSON.stringify({status:'BLOCKED',simulation:true,reason:'Simulation failed: ' + error.message},null,2);
+        showToast('Simulation aborted: ' + error.message, 'danger');
+      } finally {
+        runBtn.disabled = false;
+        runBtn.textContent = 'Run Policy Simulation';
+        state.isSimulating = false;
+      }
+
     }
 
     function handleHaltInterruption(runBtn) {
@@ -1121,68 +1103,36 @@
       document.getElementById('ledgerModal').classList.add('hidden');
     }
 
-    // LIVE POLICY RE-CHECK AT CONFIRMATION
-    function confirmLedgerSignature() {
+    async function confirmLedgerSignature() {
       closeLedgerModal();
-
-      if (state.masterKillSwitch) {
-        showToast("CONFIRMATION BLOCKED: Circuit breaker is tripped.", "danger");
-        addAuditLog("SECURITY_FAULT", "Refused Ledger signature confirmation: Master Circuit Breaker is active.", "BLOCKED");
-        return;
+      const pending = state.pendingElevatedIntent;
+      if (!pending) return;
+      state.pendingElevatedIntent = null; // Consume the UI request once, including failure.
+      try {
+        const decision = evaluateIntent(pending.intent, readNumeric('gasInput'));
+        const digest = await computeCompleteCanonicalDigest(pending.intent);
+        if (decision.status === 'BLOCKED' || digest !== pending.calldataHash) throw new Error(decision.reason || 'Intent digest mismatch.');
+        // Hashing yields; check policy again immediately before changing simulation state.
+        const latest = evaluateIntent(pending.intent, readNumeric('gasInput'));
+        if (latest.status === 'BLOCKED') throw new Error(latest.reason);
+        state.consumedNonces.add(pending.intent.nonce);
+        recordSpend(pending.intent.amountEth);
+        updateTelemetryUI();
+        document.getElementById('outcomeBanner').textContent = 'SIMULATED HUMAN APPROVAL CONFIRMED. No signature or broadcast.';
+        document.getElementById('pdrAttestationDisplay').textContent = JSON.stringify({status:'SIMULATED_AUTHORIZED',intentDigest:digest,nonce:pending.intent.nonce,simulation:true},null,2);
+        addAuditLog('SIMULATED_APPROVAL','Local human-review step recorded; no cryptographic authorization.','AUTHORIZED');
+      } catch (error) {
+        document.getElementById('outcomeBanner').textContent = 'CONFIRMATION BLOCKED: ' + error.message;
+        document.getElementById('pdrAttestationDisplay').textContent = JSON.stringify({status:'BLOCKED',reason:error.message,simulation:true},null,2);
+        addAuditLog('CONFIRMATION_BLOCKED',error.message,'BLOCKED');
       }
-
-      if (!state.pendingElevatedIntent) {
-        showToast("ERROR: No pending authorization found or intent was cancelled.", "warning");
-        return;
-      }
-
-      // Re-read and re-evaluate live conditions at the moment of signing
-      const currentLiveGas = parseFloat(document.getElementById('gasInput').value) || state.currentGasGwei;
-      if (currentLiveGas > POLICY_CONFIG.MAX_GAS_PRICE_GWEI || currentLiveGas < 0) {
-        showToast(`CONFIRMATION ABORTED: Live network gas (${currentLiveGas.toFixed(2)} Gwei) exceeds the 15.0 Gwei policy ceiling.`, "danger");
-        addAuditLog("POLICY_SPIKE", `Hardware confirmation aborted: Network gas surged to ${currentLiveGas.toFixed(2)} Gwei during human review.`, "BLOCKED");
-        state.pendingElevatedIntent = null;
-        return;
-      }
-
-      const { target, amountEth, calldataHash } = state.pendingElevatedIntent;
-
-      // Final check against absolute hardware limit
-      if (amountEth > POLICY_CONFIG.MAX_HARDWARE_LIMIT_ETH) {
-        showToast(`CONFIRMATION REFUSED: Amount (${amountEth} ETH) exceeds hardware limit (${POLICY_CONFIG.MAX_HARDWARE_LIMIT_ETH} ETH).`, "danger");
-        addAuditLog("CEILING_VIOLATION", "Refused confirmation: Exceeds hard hardware authorization ceiling.", "BLOCKED");
-        state.pendingElevatedIntent = null;
-        return;
-      }
-
-      state.epochSpentEth += amountEth;
-      updateTelemetryUI();
-
-      const outcomeBanner = document.getElementById('outcomeBanner');
-      outcomeBanner.className = "p-3 rounded-xl border border-emerald-500/50 bg-emerald-950/40 text-emerald-300 text-xs font-mono flex items-center justify-between";
-      outcomeBanner.innerHTML = `
-        <div class="flex items-center gap-2">
-          <i class="ph ph-shield-check text-lg text-emerald-400"></i>
-          <div>
-            <span class="font-bold">ELEVATED ACTION CONFIRMED (ERC-7730 Verified)</span>
-            <p class="text-[10px] text-slate-300">Signed by Ledger Hardware Signer • Flow-Bound EIP-712 verified</p>
-          </div>
-        </div>
-        <button onclick="openExplorerModal('${calldataHash}', '${escapeHTML(target)}', ${amountEth})" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-[11px] transition-colors cursor-pointer">
-          View Receipt
-        </button>
-      `;
-
-      showToast("Ledger EIP-712 Signature Released. Broadcast confirmed.", "success");
-      addAuditLog("LEDGER_AUTH", `Hardware owner verified elevated rebalance of ${amountEth} ETH.`, "AUTHORIZED");
-      state.pendingElevatedIntent = null;
     }
 
     function rejectLedgerSignature() {
       closeLedgerModal();
       state.pendingElevatedIntent = null;
-      showToast("Ledger verification cancelled. Authorization discarded.", "warning");
-      addAuditLog("USER_CANCEL", "Hardware signer rejected elevated EIP-712 authorization.", "REJECTED");
+      showToast("Simulated review cancelled. Authorization discarded.", "warning");
+      addAuditLog("USER_CANCEL", "Simulation operator rejected elevated EIP-712 authorization.", "REJECTED");
     }
 
     function openExplorerModal(hash, target, amount) {
@@ -1197,8 +1147,7 @@
     }
 
     function openBaseScan() {
-      const hash = document.getElementById('receiptTxHash').textContent;
-      window.open(`https://sepolia.basescan.org/search?q=${encodeURIComponent(hash)}`, '_blank');
+      showToast('This is an intent digest, not a transaction hash. Nothing was broadcast.', 'info');
     }
 
     function seedAuditLogs() {
