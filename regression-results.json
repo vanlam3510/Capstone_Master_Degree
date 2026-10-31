@@ -1,21 +1,21 @@
 {
   "schemaVersion": 1,
-  "startedAt": "2026-10-30T04:56:14.514430+00:00",
-  "finishedAt": "2026-10-30T04:56:46.155706+00:00",
+  "startedAt": "2026-10-31T01:31:47.434118+00:00",
+  "finishedAt": "2026-10-31T01:33:17.061062+00:00",
   "scope": "Local policy/UI simulation only; no external styling, chain, LLM, or hardware validation",
   "targetUrl": "http://127.0.0.1:8004/index.html",
   "htmlSha256": [
-    "41de6fe0a41567738a5e56d1ecb0cb535f6c6866de8fab3b1ee598d122c8a4ad"
+    "cf1b804231ec73d5f8f6fca9fce7d43ee87eba2863197f281a11a4206f9fb17a"
   ],
-  "testScriptSha256": "df89b06eb91339b0cf6b4ce951822984af44e27e1d3cdbdc19975035503d9436",
+  "testScriptSha256": "841ae7f1263d5249b2edc549c7f6778739e295fd2f75f8fa28a4a306c7ef32bf",
   "browser": {
     "version": "156.0.8078.4",
     "executable": "C:\\Users\\silen\\AppData\\Local\\ms-playwright\\chromium-1248\\chrome-win64\\chrome.exe",
     "playwrightVersion": "1.64.1"
   },
-  "totalChecks": 26,
-  "executed": 26,
-  "passed": 26,
+  "totalChecks": 56,
+  "executed": 56,
+  "passed": 56,
   "failed": 0,
   "unrun": 0,
   "suiteError": null,
@@ -25,182 +25,392 @@
       "name": "Routine preset approves and records exactly one spend",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.504
+      "durationSeconds": 2.009
     },
     {
       "id": 2,
-      "name": "Unauthorized-target preset blocks without spending",
+      "name": "Memory-injection preset blocks without spending and reports every violated rule",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 0.59
+      "durationSeconds": 1.473
     },
     {
       "id": 3,
       "name": "Excessive-slippage preset blocks without spending",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 0.598
+      "durationSeconds": 1.591
     },
     {
       "id": 4,
       "name": "Larger rebalance requests review without spending",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.33
+      "durationSeconds": 1.558
     },
     {
       "id": 5,
       "name": "Blank gas rejects at dispatch",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 0.601
+      "durationSeconds": 1.692
     },
     {
       "id": 6,
       "name": "Negative gas rejects at dispatch",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 0.702
+      "durationSeconds": 1.511
     },
     {
       "id": 7,
       "name": "Gas above 15 Gwei rejects at dispatch",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 0.67
+      "durationSeconds": 1.634
     },
     {
       "id": 8,
       "name": "Zero and negative amounts both reject",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.25
+      "durationSeconds": 2.637
     },
     {
       "id": 9,
       "name": "Amount above 0.10 ETH rejects even with confirmation attempted",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.028
+      "durationSeconds": 1.384
     },
     {
       "id": 10,
       "name": "Zero estimated output rejects",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.164
+      "durationSeconds": 1.353
     },
     {
       "id": 11,
       "name": "Zero minimum output rejects",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 0.912
+      "durationSeconds": 1.355
     },
     {
       "id": 12,
       "name": "Blank gas rejects at confirmation",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.646
+      "durationSeconds": 1.394
     },
     {
       "id": 13,
       "name": "Negative gas rejects at confirmation",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.752
+      "durationSeconds": 1.374
     },
     {
       "id": 14,
       "name": "A live gas spike rejects at confirmation",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.541
+      "durationSeconds": 1.369
     },
     {
       "id": 15,
       "name": "Zero gas permits a valid simulated confirmation",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.465
+      "durationSeconds": 1.372
     },
     {
       "id": 16,
       "name": "Rejected review cannot subsequently be confirmed",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.516
+      "durationSeconds": 1.346
     },
     {
       "id": 17,
       "name": "Emergency halt prevents pending confirmation",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.509
+      "durationSeconds": 1.388
     },
     {
       "id": 18,
       "name": "Concurrent duplicate confirmations spend only once",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.445
+      "durationSeconds": 1.398
     },
     {
       "id": 19,
       "name": "Changed intent is rejected by digest verification",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.604
+      "durationSeconds": 1.367
     },
     {
       "id": 20,
       "name": "Expired pending intent rejects",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.479
+      "durationSeconds": 1.36
     },
     {
       "id": 21,
       "name": "Hashing failure rejects and restores runnable UI",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 0.549
+      "durationSeconds": 0.567
     },
     {
       "id": 22,
       "name": "Rolling budget counts recent events and expires old events",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.302
+      "durationSeconds": 1.346
     },
     {
       "id": 23,
       "name": "HTML injected into the target is rejected without execution",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 0.544
+      "durationSeconds": 1.345
     },
     {
       "id": 24,
       "name": "Displayed intent digest matches independent sorted-key JSON SHA-256",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.319
+      "durationSeconds": 1.389
     },
     {
       "id": 25,
       "name": "Halt after dispatch begins prevents execution",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 0.526
+      "durationSeconds": 0.57
     },
     {
       "id": 26,
       "name": "Loading a new scenario invalidates a previous pending review",
       "status": "PASS",
       "detail": "",
-      "durationSeconds": 1.695
+      "durationSeconds": 2.502
+    },
+    {
+      "id": 27,
+      "name": "An unknown target alone is blocked when every other field is valid",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.366
+    },
+    {
+      "id": 28,
+      "name": "An unsupported action alone is blocked",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.367
+    },
+    {
+      "id": 29,
+      "name": "A malformed target address is blocked",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.394
+    },
+    {
+      "id": 30,
+      "name": "A minimum output above the estimate is blocked",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.356
+    },
+    {
+      "id": 31,
+      "name": "A rebalance with zero quotes is blocked and the slippage pill agrees",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.402
+    },
+    {
+      "id": 32,
+      "name": "A recipient outside the configured vault is blocked",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.395
+    },
+    {
+      "id": 33,
+      "name": "A malformed recipient is blocked",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.355
+    },
+    {
+      "id": 34,
+      "name": "Pills agree with the decision: WETH target blocked, lowercase router approved",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 2.572
+    },
+    {
+      "id": 35,
+      "name": "A consumed nonce is blocked at dispatch",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.519
+    },
+    {
+      "id": 36,
+      "name": "A tampered chain ID is rejected at confirmation",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.388
+    },
+    {
+      "id": 37,
+      "name": "Hashing failure at confirmation blocks, consumes the review, and spends nothing",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.384
+    },
+    {
+      "id": 38,
+      "name": "The digest does not depend on object key order",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 0.187
+    },
+    {
+      "id": 39,
+      "name": "Human-approved spend counts toward the hourly cap",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 2.505
+    },
+    {
+      "id": 40,
+      "name": "HTML in the prompt field renders inert everywhere",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.401
+    },
+    {
+      "id": 41,
+      "name": "Per-transaction cap boundary: 0.005 ETH approves, 0.006 ETH elevates",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 2.503
+    },
+    {
+      "id": 42,
+      "name": "Hard ceiling boundary: 0.10 ETH elevates, 0.100000001 ETH blocks",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 2.525
+    },
+    {
+      "id": 43,
+      "name": "Gas boundary: 15 Gwei approves, 15.01 Gwei blocks",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 2.53
+    },
+    {
+      "id": 44,
+      "name": "Slippage boundary: exactly 1% approves, just over 1% blocks",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 2.544
+    },
+    {
+      "id": 45,
+      "name": "Hourly velocity boundary: exactly 0.02 ETH approves, 0.0201 ETH elevates",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 2.513
+    },
+    {
+      "id": 46,
+      "name": "Spend events expire at exactly one hour",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 0.171
+    },
+    {
+      "id": 47,
+      "name": "More than nine decimal places of ETH is blocked",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.35
+    },
+    {
+      "id": 48,
+      "name": "Halt before dispatch blocks; re-arming restores operation",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.392
+    },
+    {
+      "id": 49,
+      "name": "Halt during Stage 3 aborts, writes a decision, and re-enables the UI",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.332
+    },
+    {
+      "id": 50,
+      "name": "Controls lock during a run and scenario loads are ignored",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.332
+    },
+    {
+      "id": 51,
+      "name": "Reset View discards a pending review",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.416
+    },
+    {
+      "id": 52,
+      "name": "Each outcome writes an audit entry",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 3.606
+    },
+    {
+      "id": 53,
+      "name": "Click-through: routine preset approves with all pills green and a restored button",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.441
+    },
+    {
+      "id": 54,
+      "name": "Click-through: slippage preset shows a red pill, a banner, a log entry and a badge",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.412
+    },
+    {
+      "id": 55,
+      "name": "Click-through: elevated flow opens the review, confirms, and removes the button",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.56
+    },
+    {
+      "id": 56,
+      "name": "Click-through: rejecting a review discards it and removes the button",
+      "status": "PASS",
+      "detail": "",
+      "durationSeconds": 1.551
     }
   ]
 }
